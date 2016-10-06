@@ -3,7 +3,7 @@ Here are some docs for general usage and daily programming
 
 ## OTP Docs
 
-### supervisors
+### supervisor
 * This is a really simple guide with hints for a newbie on what a supervisor is, basic usage and some source code as well
   - https://pdincau.wordpress.com/2010/01/28/supervisors-in-erlang-otp/
 * StackOverflow question about adding a child process to a supervisor (simple_one_for_one), simple tricks and notes from users
