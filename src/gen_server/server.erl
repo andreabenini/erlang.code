@@ -1,3 +1,12 @@
+%% coding: UTF-8
+%%
+%% @file    server.erl - Just a simple gen_server implementation, use it as a foundation for your projects
+%% @date    (2016/10)
+%% @author  Andrea Benini
+%%
+%% @history 1.0
+%%          First working version
+%%
 -module(server).
 -author('Andrea Benini <andreabenini@gmail.com>').
 
@@ -23,7 +32,7 @@
     myfunc2/1                           %% my own custom function
 ]).
 
--define(MODULE_ID, ?MODULE).            %% myOwnCustomAtomID  vs  ?MODULE
+-define(MODULE_ID, ?MODULE).            %% myOwnCustomAtomID  vs  ?MODULE  vs whateverElseAtomYouUse
 
 
 %% @see gen_server behaviour
