@@ -8,6 +8,8 @@ Here are some docs for general usage and daily programming
   - https://pdincau.wordpress.com/2010/01/28/supervisors-in-erlang-otp/
 * StackOverflow question about adding a child process to a supervisor (simple_one_for_one), simple tricks and notes from users
   - http://stackoverflow.com/questions/4837196/erlang-supervisor3-adding-a-child-process
+* Supervisor design principles: changing, code hot loading, restart/upgrade (from official docs)
+  - http://erlang.org/doc/design_principles/appup_cookbook.html
 
 ### gen_server
 * This one is a beginner guide for gen_server, very well written and simple
