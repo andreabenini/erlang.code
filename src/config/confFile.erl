@@ -1,7 +1,8 @@
 %%
+%% scrapbook ideas, nothing fancy here...
 %%
 
-%% LOG INIT - Logging facility setup
+%% 
 logInit() ->
-    LogFile = programER:dirWork() ++ "/log/programER.log",
+    LogFile = programER:dirWork() ++ "/log/myfile.log",
     filelib:ensure_dir(LogFile).
