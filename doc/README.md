@@ -23,3 +23,8 @@ Here are some docs for general usage and daily programming
 * A logging framework for Erlang/OTP from Basho
   - http://basho.com/posts/technical/introducing-lager-a-new-logging-framework-for-erlangotp/
   - https://pdincau.wordpress.com/2012/08/11/how-to-log-your-stuff-with-lager/
+
+### fast xml
+* Fast Expat based Erlang XML parsing library
+  - https://github.com/processone/fast_xml
+  - This library might be used without dependencies but see my comment [in this issue](https://github.com/processone/fast_xml/issues/10). Copy p1_nif_utils.erl in the same project to compile it
