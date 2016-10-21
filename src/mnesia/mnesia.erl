@@ -18,14 +18,24 @@ tableCreate(TableName, RecordType, RecordInfo, RecordKey) ->
                     notInitialized
             end
     end.
-
 %% Record Example
 -record(tableRecord, {
             filename = [],
             pattern  = [],
             template = []
         }).
-
 %% Statement invoke sample
 %% record_info cannot be redefined and must be passed or hardcoded into create_table attribs
 tableCreate(tableName, tableRecord, record_info(fields, tableRecord), #tableRecord.pattern),
+
+    
+%% TABLE RECORD UPDATE - Insert/Update a record in the table
+tableRecordUpdate(TableName, Record) ->
+    TheRecord = fun() -> mnesia:write(TableName, Record, write) end,
+    mnesia:transaction(TheRecord).
+%% ...and a simple call of it
+programERdb:recordUpdate(myTableName, #tableRecord{
+                                                   filename = FileName,
+                                                   pattern  = MyPattern,
+                                                   template = Template  }),
+
