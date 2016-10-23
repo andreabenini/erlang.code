@@ -39,3 +39,14 @@ programERdb:recordUpdate(myTableName, #tableRecord{
                                                    pattern  = MyPattern,
                                                    template = Template  }),
 
+
+%% Verify this if it works !
+tableRecordDelete(TableName, Condition) ->
+    F = fun() ->
+            DeleteCriteria = mnesia:match_object(TableName, Condition, read),
+            lists:foreach(fun(Element)->
+                              io:format("TableName=~p, Element=~p", [TableName, Element]),
+                              mnesia:delete_object(Element)
+                          end, DeleteCriteria)
+    end,
+    mnesia:activity(async_dirty, F).
