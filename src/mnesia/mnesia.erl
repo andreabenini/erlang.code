@@ -34,19 +34,28 @@ tableRecordUpdate(TableName, Record) ->
     TheRecord = fun() -> mnesia:write(TableName, Record, write) end,
     mnesia:transaction(TheRecord).
 %% ...and a simple call of it
-programERdb:recordUpdate(myTableName, #tableRecord{
+modulename:recordUpdate(myTableName, #tableRecord{
                                                    filename = FileName,
                                                    pattern  = MyPattern,
                                                    template = Template  }),
 
 
-%% Verify this if it works !
+%% TABLE RECORD DELETE - Delete records from table
+%% @param TableName (atom)    Table name
+%% @param Condition (#record) Selection criteria based on table record
+%% @return ok (atom) Nothing returned
+%%
+%% @see   Selection criteria example : #record{field="something_to_del", _='_'}
 tableRecordDelete(TableName, Condition) ->
+    ?LOG_WARNING("DELETE++  ) ~p:~p:~p", [TableName, Condition]),%% TODO: remove
     F = fun() ->
-            DeleteCriteria = mnesia:match_object(TableName, Condition, read),
-            lists:foreach(fun(Element)->
-                              io:format("TableName=~p, Element=~p", [TableName, Element]),
-                              mnesia:delete_object(Element)
-                          end, DeleteCriteria)
+        DeleteCriteria = mnesia:match_object(TableName, Condition, read),
+        lists:foreach(fun(Element)->
+                            io:format("TableName=~p, Element=~p", [TableName, Element]),
+                            mnesia:delete_object(Element)
+                      end, DeleteCriteria)
     end,
     mnesia:activity(async_dirty, F).
+
+%% here's the call:
+modulename:recordDelete(aiml, #aiml{filename="filetype.xml", _='_'}).
