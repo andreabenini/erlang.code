@@ -3,6 +3,8 @@
 %% @param RecordType (record)  -define record(...)
 %% @param RecordInfo (record_info type) record_info type, or its define
 %% @param RecordKey  (index pkey) primary key or table index
+%%
+%% @return ok|notinitialized (atom) operation result
 tableCreate(TableName, RecordType, RecordInfo, RecordKey) ->
     case lists:member(TableName, mnesia:table_info(schema, tables)) of
         true ->
