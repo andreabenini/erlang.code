@@ -65,3 +65,10 @@ tableRecordDelete(TableName, Condition) ->
 
 %% here's the call:
 modulename:recordDelete(aiml, #aiml{filename="filetype.xml", _='_'}).
+
+
+%% TABLE DELETE - Delete a table from a mnesia schema
+%% @param  TableName (atom) The table to delete
+%% @return (atom) {aborted, Reason} | {atomic, ok}
+tableDelete(TableName) ->
+    mnesia:delete_table(TableName).
