@@ -53,18 +53,18 @@ modulename:recordUpdate(myTableName, #tableRecord{
 %%
 %% @see   Selection criteria example : #record{field="something_to_del", _='_'}
 tableRecordDelete(TableName, Condition) ->
-    ?LOG_WARNING("DELETE++  ) ~p:~p:~p", [TableName, Condition]),%% TODO: remove
     F = fun() ->
         DeleteCriteria = mnesia:match_object(TableName, Condition, read),
         lists:foreach(fun(Element)->
-                            io:format("TableName=~p, Element=~p", [TableName, Element]),
-                            mnesia:delete_object(Element)
-                      end, DeleteCriteria)
+                            mnesia:delete_object(TableName, Element, write)
+                      end,
+                      DeleteCriteria)
     end,
-    mnesia:activity(async_dirty, F).
+    mnesia:transaction(F).
+
 
 %% here's the call:
-modulename:recordDelete(aiml, #aiml{filename="filetype.xml", _='_'}).
+modulename:tableRecordDelete(tablename, #record{fieldname="conditionValueToDelete", _='_'}).
 
 
 %% TABLE DELETE - Delete a table from a mnesia schema
