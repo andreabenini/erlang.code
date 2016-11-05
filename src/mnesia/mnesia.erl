@@ -67,6 +67,18 @@ tableRecordDelete(TableName, Condition) ->
 modulename:tableRecordDelete(tablename, #record{fieldname="conditionValueToDelete", _='_'}).
 
 
+%% TABLE RECORD SELECT - Select a record in the table
+%% @param TableName (atom) Table name
+%% @param Criteria  (#record) Selection criteria based on table record
+%% @return Result   (#record) SELECT results
+tableRecordSelect(TableName, Criteria) ->
+    F = fun() -> mnesia:match_object(TableName, Criteria, read) end,
+    mnesia:transaction(F).
+
+%% ...and, here's the call:
+tableRecordSelect(sessiona, #session{sessionid=console, _='_'}).
+
+
 %% TABLE DELETE - Delete a table from a mnesia schema
 %% @param  TableName (atom) The table to delete
 %% @return (atom) {aborted, Reason} | {atomic, ok}
