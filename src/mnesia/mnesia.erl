@@ -6,7 +6,7 @@
 %% @param RecordKey  (index pkey) primary key or table index
 %%
 %% @return ok|notinitialized (atom) operation result
-tableCreate(TableName, RecordType, TableType, RecordInfo, RecordKey) ->
+tableCreate(TableName, RecordType, RecordInfo, TableType, RecordKey) ->
     case lists:member(TableName, mnesia:table_info(schema, tables)) of
         true ->
             io:fwrite("Table '~p' already exists, its creation is not necessary", [TableName]);
