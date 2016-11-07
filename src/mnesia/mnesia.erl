@@ -2,10 +2,11 @@
 %% @param TableName  (atom)    Name of the table
 %% @param RecordType (record)  -define record(...)
 %% @param RecordInfo (record_info type) record_info type, or its define
+%% @param TableType  (atom)    set:unique, bag:multiple
 %% @param RecordKey  (index pkey) primary key or table index
 %%
 %% @return ok|notinitialized (atom) operation result
-tableCreate(TableName, RecordType, RecordInfo, RecordKey) ->
+tableCreate(TableName, RecordType, TableType, RecordInfo, RecordKey) ->
     case lists:member(TableName, mnesia:table_info(schema, tables)) of
         true ->
             io:fwrite("Table '~p' already exists, its creation is not necessary", [TableName]);
@@ -15,7 +16,7 @@ tableCreate(TableName, RecordType, RecordInfo, RecordKey) ->
                                           {record_name, RecordType},
                                           {attributes,  RecordInfo},
                                           {index,       [RecordKey]},
-                                          {type,        bag}                %% set:unique, bag:multiple
+                                          {type,        TableType}
                                           ] ) of
                 {atomic, ok} ->
                     io:fwrite("table '~p' created", [TableName]);
@@ -32,7 +33,7 @@ tableCreate(TableName, RecordType, RecordInfo, RecordKey) ->
         }).
 %% Statement invoke sample
 %% record_info cannot be redefined and must be passed or hardcoded into create_table attribs
-tableCreate(tableName, tableRecord, record_info(fields, tableRecord), #tableRecord.pattern),
+tableCreate(tableName, tableRecord, record_info(fields, tableRecord), bag, #tableRecord.pattern),
 
     
 %% TABLE RECORD UPDATE - Insert/Update a record in the table
