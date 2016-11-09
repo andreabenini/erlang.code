@@ -85,3 +85,23 @@ tableRecordSelect(sessiona, #session{sessionid=console, _='_'}).
 %% @return (atom) {aborted, Reason} | {atomic, ok}
 tableDelete(TableName) ->
     mnesia:delete_table(TableName).
+
+
+%% SETTING DEFAULT - Set default value if it doesn't exist a value for Variable
+%% @param TableName    (atom) Name of the table where the setting should be stored
+%% @param Variable     (list) Variable name, detect if it exists in TableName
+%% @param DefaultValue (list) Default value to assign if Variable doesn't exists
+settingDefault(TableName, Variable, DefaultValue) ->
+    try
+        F = fun() -> mnesia:match_object(TableName, #setting{variable=botname, _='_'}, read) end,
+        {atomic, [_SomeValue]} = mnesia:transaction(F)      %% Something exists, I don't even care about its result but I'm ok
+    catch _:_ ->
+        io:fwrite("~p doesn't have a value, default set to ~p~n", [Variable, DefaultValue]),
+        mnesia:transaction(fun() ->
+                                Record = #setting{variable=Variable, value=DefaultValue},
+                                mnesia:write(TableName, Record, write)
+                           end)
+    end.
+%% ... and its call:
+%% @see: table "setting" type is set (not bag)
+settingDefault(TableSetting, variable, "My Default Value").
