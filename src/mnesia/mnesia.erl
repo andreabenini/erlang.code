@@ -79,6 +79,23 @@ tableRecordSelect(TableName, Criteria) ->
 %% ...and, here's the call:
 tableRecordSelect(sessiona, #session{sessionid=console, _='_'}).
 
+%% SELECT all records from a table with an iterator
+%% '[]' is where the accumulator might put its initial (and successive) value
+showTableWithIterator(TableName)->
+    Iterator =  fun(Record, _)->
+                    io:format("~p~n",[Record]),
+                    []
+                end,
+    case mnesia:is_transaction() of
+        true ->
+            mnesia:foldl(Iterator, [], TableName);
+        false -> 
+            Exec = fun({Function,Table}) -> mnesia:foldl(Function, [], Table) end,
+            mnesia:activity(transaction, Exec, [{Iterator,TableName}], mnesia_frag)
+    end.
+%% ...and here's the call
+showTableWithIterator(nameOfMyCoolTable).
+
 
 %% TABLE DELETE - Delete a table from a mnesia schema
 %% @param  TableName (atom) The table to delete
