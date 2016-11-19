@@ -68,16 +68,32 @@ tableRecordDelete(TableName, Condition) ->
 modulename:tableRecordDelete(tablename, #record{fieldname="conditionValueToDelete", _='_'}).
 
 
-%% TABLE RECORD SELECT - Select a record in the table
+%% TABLE RECORD SELECT - Select a record in the table (with match_object)
 %% @param TableName (atom) Table name
 %% @param Criteria  (#record) Selection criteria based on table record
 %% @return Result   (#record) SELECT results
 tableRecordSelect(TableName, Criteria) ->
-    F = fun() -> mnesia:match_object(TableName, Criteria, read) end,
+    F = fun() ->
+        mnesia:match_object(TableName, Criteria, read)
+    end,
     mnesia:transaction(F).
-
 %% ...and, here's the call:
 tableRecordSelect(sessiona, #session{sessionid=console, _='_'}).
+
+%% TABLE RECORD SELECT - Select a record in the table (with select)
+%% @param TableName (atom) Table name
+%% @param Record    (#record) Record match statement (example: #graph{parent='$1',aiml='$2',word='$3',_='_'} )
+%% @param Criteria  (list)    Match list for #record (example: [{'==','$1',100},{'/=','$2', 0}] )
+%% @param ResultType(list)    Result list, it might be: First Item ['$1'], All Items ['$$'], entire record ['$_']
+%% @return Result   (#record) SELECT results
+tableRecordSelect(TableName, Record, Criteria, ResultType) ->
+    F = fun() ->
+        mnesia:select(TableName, [{ Record, Criteria, ResulType}])
+    end,
+    mnesia:transaction(F).
+%% ...and, here's the call:
+tableRecordSelect(grapha, #graph{parent='$1',aiml='$2',word='$3',_='_'}, [{'==','$1',100},{'/=','$2', 0}], ['$_').
+
 
 %% SELECT all records from a table with an iterator
 %% '[]' is where the accumulator might put its initial (and successive) value
