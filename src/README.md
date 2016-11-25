@@ -9,3 +9,4 @@
 | [snippets] (snippets/)     | Assorted snippets with useful code                    |
 | [lib] (lib/)               | external libs and examples                            |
 | [config] (config/)         | some tests, junk and various stuff (just a scrapbook) |
+| [ejabberd] (ejabberd/)     | ejabberd assorted code                                |
