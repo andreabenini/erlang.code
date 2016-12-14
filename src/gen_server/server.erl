@@ -86,7 +86,9 @@ handle_call({atomIdForSomething, Parameters, OtherParameters}, From, State) ->
     {reply, ok, State};
 handle_call(mycustomatom, From, State) ->
     io:fwrite("handle_call) [mycustomatom] From=~p, State=~p~n", [From, State]),
-    % gen_server:call(?SERVER, {atomIdForSomething, [firstParam, secondParam], otherParams}),   %% Don't do that ! Timeout error (handle_call is sync !)
+    %% WARNING: Don't stack multiple handle_call calls or you'll get a timeout error (handle_call is sync !)
+    %%          It's not nice to call this one from here:
+    %%              gen_server:call(?SERVER, {atomIdForSomething, [firstParam, secondParam], otherParams}),
     {reply, ok, State};
 handle_call(DontKnow, From, State) ->
     io:fwrite("handle_call) handle_call=~p, From=~p, State=~p~n", [DontKnow, From, State]),
