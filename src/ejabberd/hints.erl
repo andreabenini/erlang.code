@@ -6,3 +6,10 @@ ets:tab2list(muc_online_room).
 %% @return ConferenceHost (binary) Something like: <<"conference.domain.com">>
 getConferenceHost(Host) ->
     gen_mod:get_module_opt_host(Host, mod_muc, <<"conference.@HOST@">>).
+
+%% Get database module used in the muc system
+%% @return (atom) Something like: mod_muc_sql
+%% @see    it's the module that handles the db directly (mnesia, sql, riak, ..)
+dbModuleForMUC(Domain) ->
+    XMPPDomain = jid:nameprep(Domain),
+    gen_mod:db_mod(XMPPDomain, mod_muc).
