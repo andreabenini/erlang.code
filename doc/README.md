@@ -1,8 +1,9 @@
 # Useful links
 Here are some docs for general usage and daily programming
 
-System Principles: http://erlang.org/doc/system_principles/system_principles.html
-
+## System
+* System Principles
+  - http://erlang.org/doc/system_principles/system_principles.html
 
 ## OTP Docs
 
@@ -31,3 +32,13 @@ System Principles: http://erlang.org/doc/system_principles/system_principles.htm
 * Fast Expat based Erlang XML parsing library
   - https://github.com/processone/fast_xml
   - This library might be used without dependencies but see my comment [in this issue](https://github.com/processone/fast_xml/issues/10). Copy p1_nif_utils.erl in the same project to compile it
+
+## Profiling, General Tools, utilities
+* A set of functions for time profiling of Erlang programs to find out how the execution time is used
+  - http://erlang.org/doc/man/eprof.html
+* Code snippets and practices that helped developers debug production systems that were built in Erlang
+  - https://www.erlang-in-anger.com/
+* Recon is a set of tools usable in production to diagnose Erlang problems or inspect production environment safely
+  - https://github.com/ferd/recon
+* An informative youtube channel on Erlang Engine tuning (Eugene Kalinin)
+  - https://www.youtube.com/playlist?list=PL9MhXsiBgon5QVFi3rQDZAlftwPCW8gLc
