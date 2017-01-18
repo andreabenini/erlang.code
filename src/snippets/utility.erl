@@ -28,7 +28,7 @@ bindateToTimestamp(DateTime) ->
     UNIXTimeStamp.
 
 %% Calculate current timestamp
-%% @see: do NOT use "erlang:now()", "erlang:timestamp()" is preferred
+%% @see: please use "erlang:now()" instead of "erlang:timestamp()"
 unixTimestamp() ->
     {MegaSecs, Secs, _MicroSecs} = erlang:timestamp(),     %% Timestamp
     MegaSecs * 1000000 + Secs.
