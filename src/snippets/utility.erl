@@ -26,3 +26,9 @@ bindateToTimestamp(DateTime) ->
     UNIXTimeStamp = calendar:datetime_to_gregorian_seconds({{Year, Month, Day}, {Hour, Minute, Second}}) -
                     calendar:datetime_to_gregorian_seconds({{1970, 1, 1}, {0, 0, 0}}),
     UNIXTimeStamp.
+
+%% Calculate current timestamp
+%% @see: do NOT use "erlang:now()", "erlang:timestamp()" is preferred
+unixTimestamp() ->
+    {MegaSecs, Secs, _MicroSecs} = erlang:timestamp(),     %% Timestamp
+    MegaSecs * 1000000 + Secs.
