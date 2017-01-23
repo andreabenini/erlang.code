@@ -13,3 +13,45 @@ getConferenceHost(Host) ->
 dbModuleForMUC(Domain) ->
     XMPPDomain = jid:nameprep(Domain),
     gen_mod:db_mod(XMPPDomain, mod_muc).
+
+%% SEND MESSAGE - Send a message to another user
+%% @param From (binary) From user
+%% @param To   (binary) To user
+%% @param Body (binary) body message
+%% @param URL  (binary) [optional] attached URL
+%% @return void(atom)
+%%
+%% @see   When URL is not false the message contains an URL specified as an OOB field
+%%        and its description is the message Body
+sendMessage(From, To, Body, false) ->
+    {MegaSecs, Secs, _MicroSecs} = erlang:timestamp(),                      %% Current Timestamp
+    TimeStamp = integer_to_binary(MegaSecs * 1000000 + Secs),
+    ejabberd_router:route(  jid:from_string(From),                          %% From          
+                            jid:from_string(To),                            %% To
+                            {xmlel, <<"message">>,                          %% Messagge to send (<message/>)
+                             [{<<"type">>, <<"chat">>},                     %%      type=chat
+                              {<<"from">>, From},                           %%      From
+                              {<<"to">>, To},                               %%      To
+                              {<<"id">>, TimeStamp}],                       %%      message ID, there must be something here
+                             [{xmlel, <<"body">>, [], [{xmlcdata, Body}] }] %%      message body
+                            }
+    );
+sendMessage(From, To, Body, URL) ->
+    {MegaSecs, Secs, _MicroSecs} = erlang:timestamp(),                      %% Current Timestamp
+    TimeStamp = integer_to_binary(MegaSecs * 1000000 + Secs),
+    ejabberd_router:route(  jid:from_string(From),                          %% From          
+                            jid:from_string(To),                            %% To
+                            {xmlel, <<"message">>,                          %% Message to send (<message/>)
+                             [{<<"type">>, <<"chat">>},                     %%      type=chat
+                              {<<"from">>, From},                           %%      From
+                              {<<"to">>, To},                               %%      To
+                              {<<"id">>, TimeStamp}],                       %%      message ID, there must be something here
+                             [{xmlel, <<"body">>, [], [{xmlcdata, Body}] }, %%      message body
+                              {xmlel, <<"x">>,
+                               [{<<"xmlns">>, <<"jabber:x:oob">>}],
+                               [{xmlel, <<"url">>,  [], [{xmlcdata, URL }] },
+                                {xmlel, <<"desc">>, [], [{xmlcdata, Body}] }]
+                              }
+                             ]
+                            }
+    ).
