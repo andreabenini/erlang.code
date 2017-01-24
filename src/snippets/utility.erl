@@ -19,7 +19,14 @@ code:all_loaded()
 
 %% Check if a function is defined: true|false (http://erlang.org/doc/man/erlang.html#function_exported-3)
 erlang:function_exported(io, fwrite, 2).
-%% ...even better:
+%% Sample:
+%% if erlang:function_exported(ejabberd_sql_pt, sql__mark, 1) =:= true ->
+%%     io:fwrite("Defined", []);
+%% true ->
+%%     io:fwrite("NotDefined", [])
+%% end.
+%%
+%% ...but even better:
 %% (credits: gootik @slack channel)
 is_defined({M, F, A}) ->
     code:load_file(M),
