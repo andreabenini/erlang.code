@@ -1,5 +1,9 @@
 %% List of online rooms (for every domain in the current host)
 ets:tab2list(muc_online_room).
+%% Getting Room PID
+%% @param RoomName (binary) name of the room             (ie: <<"redroom">>)
+%% @param ConferenceHost (binary) Conference host domain (ie: <<"conference.domain.tld">>)
+{value, #muc_online_room{pid=RoomPID}} = lists:keysearch({RoomName, ConferenceHost}, 2, ets:tab2list(muc_online_room))
 
 %% Getting conference host from XMPP domain
 %% @param Host (binary) the XMPP domain. ie: <<"domain.com">>
