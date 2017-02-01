@@ -33,6 +33,10 @@ Here are some docs for general usage and daily programming
   - https://github.com/processone/fast_xml
   - This library might be used without dependencies but see my comment [in this issue](https://github.com/processone/fast_xml/issues/10). Copy p1_nif_utils.erl in the same project to compile it
 
+### httpc
+* httpc example with SSL connection
+  - https://github.com/processone/ejabberd/issues/1506
+
 ## Profiling, General Tools, utilities
 * A set of functions for time profiling of Erlang programs to find out how the execution time is used
   - http://erlang.org/doc/man/eprof.html
