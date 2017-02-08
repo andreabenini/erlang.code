@@ -15,7 +15,23 @@ errorGetLine(FunctionName) ->
     integer_to_binary(LineError).
 
 %% list of all loaded modules in erlang
-code:all_loaded()
+code:all_loaded().
+io:fwrite("~p", [code:all_loaded()]).   %% Some verbose level output...
+
+%% List of registered processes in the erlang node
+io:fwrite("~p", [ registered() ]).
+%% Get the pid of a registered module
+whereis(mycoolmodulename).
+% <0.123456.7>
+%% Exit/kill a process (when possible)
+exit(Pid, Reason).
+
+%% Pid 'o' Rama
+Pid = list_to_pid("<0.37.0>").
+% Pid = <0.37.0>
+pid_to_list(Pid).
+% "<0.37.0>"
+
 
 %% Check if a function is defined: true|false (http://erlang.org/doc/man/erlang.html#function_exported-3)
 erlang:function_exported(io, fwrite, 2).
