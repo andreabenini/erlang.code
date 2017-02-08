@@ -25,6 +25,9 @@ whereis(mycoolmodulename).
 % <0.123456.7>
 %% Exit/kill a process (when possible)
 exit(Pid, Reason).
+% exit(Pid, normal).    %% Normal mode
+% exit(Pid, shutdown).  %%
+% exit(Pid, kill).      %% The hard way
 
 %% Pid 'o' Rama
 Pid = list_to_pid("<0.37.0>").
