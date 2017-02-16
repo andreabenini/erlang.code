@@ -51,6 +51,9 @@ is_defined({M, F, A}) ->
     code:load_file(M),
     erlang:function_exported(M, F, A).
 
+%% Print erlang version from console
+erlang:system_info(otp_release).
+
 %% Return a unix timestamp from a datetime string
 %% @param DateTime (binary) A binary datetime (example from PostgreSQL: <<"2017-01-09 12:31:48.250951">>)
 %% @return (integer) a valid unix datetime
