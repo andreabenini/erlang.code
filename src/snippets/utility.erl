@@ -54,6 +54,21 @@ is_defined({M, F, A}) ->
 %% Print erlang version from console
 erlang:system_info(otp_release).
 
+%% Show used memory
+erlang:memory().
+%% Sample:
+%% [{total,132302616},
+%%   {processes,93408000},
+%%   {processes_used,93407696},
+%%   {system,38894616},
+%%   {atom,984217},
+%%   {atom_used,960212},
+%%   {binary,5709480},
+%%   {code,23620774},
+%%   {ets,3675192}]
+%% erlang:memory() reports memory in bytes.
+
+
 %% Return a unix timestamp from a datetime string
 %% @param DateTime (binary) A binary datetime (example from PostgreSQL: <<"2017-01-09 12:31:48.250951">>)
 %% @return (integer) a valid unix datetime
