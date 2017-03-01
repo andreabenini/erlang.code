@@ -67,6 +67,12 @@ erlang:memory().
 %%   {code,23620774},
 %%   {ets,3675192}]
 %% erlang:memory() reports memory in bytes.
+%% Linux way from the outside: # ps -C beam.smp -o rss
+%%                             RSS
+%%                             23720
+%%                             24672
+%%                             127528
+%%                             24740
 
 
 %% Return a unix timestamp from a datetime string
