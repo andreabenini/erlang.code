@@ -42,3 +42,26 @@ exit(pid(0,760,0), kill).
 %%                      {fullsweep_after,65535},
 %%                      {minor_gcs,6}]},
 %%                 {suspending,[]}]
+
+%% Print erlang version from console
+erlang:system_info(otp_release).
+
+%% Show used memory
+erlang:memory().
+%% Sample:
+%% [{total,132302616},
+%%   {processes,93408000},
+%%   {processes_used,93407696},
+%%   {system,38894616},
+%%   {atom,984217},
+%%   {atom_used,960212},
+%%   {binary,5709480},
+%%   {code,23620774},
+%%   {ets,3675192}]
+%% erlang:memory() reports memory in bytes.
+%% Linux way from the outside: # ps -C beam.smp -o rss
+%%                             RSS
+%%                             23720
+%%                             24672
+%%                             127528
+%%                             24740
