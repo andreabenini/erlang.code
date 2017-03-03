@@ -65,3 +65,15 @@ erlang:memory().
 %%                             24672
 %%                             127528
 %%                             24740
+
+
+%% List of available applications in the VM
+application:which_applications().
+%% [{ejabberd,"ejabberd","xx.xx"},
+%%  {p1_pgsql,"PostgreSQL driver","x.x.x"},
+%%  {inets,"INETS  CXC xxx xx","x.x"},
+%%  {mnesia,"MNESIA  CXC xxx xx","x.xx.xx"},
+%%  {cache_tab,"In-memory cache Erlang / Elixir library", "x.x.x"},
+%%  {stringprep,"Fast Stringprep Erlang / Elixir implementation", "x.x.x"},
+%%  ...
+%%  {kernel,"ERTS  CXC 138 10","4.1.1"}]
