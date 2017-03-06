@@ -91,3 +91,10 @@ bindateToTimestamp(DateTime) ->
 unixTimestamp() ->
     {MegaSecs, Secs, _MicroSecs} = erlang:timestamp(),     %% Timestamp
     MegaSecs * 1000000 + Secs.
+
+%% Print current datetime in an human friendly format
+printDateTime() ->
+    {{YY,MM,DD}, {HH,II,SS}} = calendar:local_time(),
+    io_lib:format("~4..0b/~2..0b/~2..0b ~2..0b:~2..0b:~2..0b", [YY, MM, DD, HH, II, SS]).
+%% io:fwrite("DateTime:~s", [printDateTime()]).            %% to call it
+
