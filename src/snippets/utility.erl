@@ -13,6 +13,10 @@ errorGetLine(FunctionName) ->
     {value, {_, _, _, LineInfo} } = StackFunctionError,                         %% {value,{mod_restapi,chatSend,3, [{file,"src/mod_restapi.erl"},{line,1203}]}}
     {value, {line, LineError}} = lists:keysearch(line, 1, LineInfo),            %% {value,{line,1203}}
     integer_to_binary(LineError).
+-define(ERROR_LINE, errorGetLine(?FUN_NAME)).
+%% Basic usage:
+io:fwrite("Error [L.~s == ~s]", [?ERROR_LINE, errorGetLine(?FUN_NAME)]),
+
 
 %% list of all loaded modules in erlang
 code:all_loaded().
