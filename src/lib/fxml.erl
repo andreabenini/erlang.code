@@ -37,3 +37,17 @@ XML = fxml_stream:parse_element(<<"<note>
 io:fwrite("~p", [fxml:element_to_binary(XML)]).
 %% <<"<note>\n<to>Tove</to>\n<from>Jani</from>\n<heading>Reminder</heading>\n<body>Don&apos;t forget me this weekend!</body>\n</note>">>
 
+%% Get PATH content data
+%% VCard = {xmlel,
+%%          <<"vCard">>,
+%%          [{<<"xmlns">>,<<"vcard-temp">>}],
+%%          [{xmlcdata,<<"\n">>},
+%%           {xmlel,<<"FN">>,[],[{xmlcdata,<<"Ben">>}]},
+%%           {xmlcdata,<<"\n">>},
+%%           {xmlel,<<"PHOTO">>,[],[{xmlcdata,<<"\n">>},
+%%                                  {xmlel,<<"TYPE">>,[],[{xmlcdata,<<"image/png">>}]},
+%%                                  {xmlcdata,<<"\n">>},
+%%                                  {xmlel,<<"BINVAL">>,[],[{xmlcdata,<<"\uuencodesomevalue">>}]},
+%%                                  ...]},...]}
+io:fwrite("Image Content Type = ~p", [ fxml:get_path_s(VCard, [{elem, <<"PHOTO">>}, {elem, <<"TYPE">>}, cdata]) ]).
+%% Image Content Type = <<"image/png">>
