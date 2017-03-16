@@ -16,3 +16,7 @@ errorGetLine(FunctionName) ->
 -define(ERROR_LINE, errorGetLine(?FUN_NAME)).
 %% Basic usage:
 io:fwrite("Error [L.~s == ~s]", [?ERROR_LINE, errorGetLine(?FUN_NAME)]),
+
+%% Returns an unique (and positive in this case) integer, nicely used to generate temp file names (kinda cool)
+erlang:unique_integer([positive]).
+%% 123
