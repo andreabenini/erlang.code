@@ -4,8 +4,10 @@
 %% Brief command help
 help().
 
+
 %% information about the running system
 i().
+
 
 %% Killing in the name of... <0.760.0>
 exit(pid(0,760,0), kill).
@@ -43,8 +45,10 @@ exit(pid(0,760,0), kill).
 %%                      {minor_gcs,6}]},
 %%                 {suspending,[]}]
 
+
 %% Print erlang version from console
 erlang:system_info(otp_release).
+
 
 %% Show used memory
 erlang:memory().
