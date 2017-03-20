@@ -37,6 +37,7 @@ Here are some docs for general usage and daily programming
 * httpc example with SSL connection
   - https://github.com/processone/ejabberd/issues/1506
 
+
 ## Profiling, General Tools, utilities
 * A set of functions for time profiling of Erlang programs to find out how the execution time is used
   - http://erlang.org/doc/man/eprof.html
@@ -46,6 +47,7 @@ Here are some docs for general usage and daily programming
   - https://github.com/ferd/recon
 * An informative youtube channel on Erlang Engine tuning (Eugene Kalinin)
   - https://www.youtube.com/playlist?list=PL9MhXsiBgon5QVFi3rQDZAlftwPCW8gLc
+
 
 ## Speechs, Presentations
 * Saša Jurić
