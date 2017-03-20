@@ -46,3 +46,8 @@ Here are some docs for general usage and daily programming
   - https://github.com/ferd/recon
 * An informative youtube channel on Erlang Engine tuning (Eugene Kalinin)
   - https://www.youtube.com/playlist?list=PL9MhXsiBgon5QVFi3rQDZAlftwPCW8gLc
+
+## Speechs, Presentations
+* Saša Jurić
+  - https://vimeo.com/130867470 High Availability ElixirConf EU 2015
+  - https://www.youtube.com/watch?v=Ba3aCm3A0o8, HA with Elixir and Erlang (FullStack Fest 2016)
