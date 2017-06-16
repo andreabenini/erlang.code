@@ -1,9 +1,12 @@
 # Useful links
 Here are some docs for general usage and daily programming
 
-## System
+## System & General documentation
 * System Principles
   - http://erlang.org/doc/system_principles/system_principles.html
+* Free Books and references
+  - http://opensource.erlang-solutions.com/erlang-handbook/
+  - http://learnyousomeerlang.com/ (LYSE: Learn You Some Erlang)
 
 ## OTP Docs
 
