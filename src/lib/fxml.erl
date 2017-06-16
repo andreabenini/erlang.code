@@ -12,10 +12,25 @@ Message =
                 [{<<"xmlns">>,<<"http://jabber.org/protocol/chatstates">>}],
                 []},
          {xmlcdata,<<"\n">>}]}.
-
 %% Data extraction
 fxml:get_subtag(Message, <<"body">>).                       %% {xmlel,<<"body">>,[],[{xmlcdata,<<"The Body Message">>}]}
 fxml:get_tag_cdata(fxml:get_subtag(Message, <<"body">>)).   %% <<"The Body Message">>
+
+%% Looking for a specific namespace
+Packet = 
+    {xmlel,<<"iq">>,
+       [{<<"type">>, <<"set">>},
+        {<<"id">>, <<"e4e717d3-d1f8-4a37-9109-af1b448dbb75:sendIQ">>}],
+       [{xmlel,<<"query">>,
+               [{<<"xmlns">>,<<"jabber:iq:roster">>}],
+               [{xmlel,<<"item">>, [{<<"jid">>,<<"ben@whatever.com">>},{<<"name">>,<<"ben@whatever.com">>}], []}]}
+       ]
+    }.
+fxml:get_subtag_with_xmlns(Packet, <<"query">>, <<"jabber:iq:roster">>).
+%% FOUND     -> {xmlel,<<"query">>,[{<<"xmlns">>,<<"jabber:iq:roster">>}],[{xmlel,<<"item">>,[{<<"jid">>,<<"ben@whatever.com">>},{<<"name">>,<<"ben@whatever.com">>}],[]}]}
+%% NOT FOUND -> false
+
+
 
 %% XML to tuple
 XML = fxml_stream:parse_element(<<"<note>
