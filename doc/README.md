@@ -53,6 +53,9 @@ Here are some docs for general usage and daily programming
 * Saša Jurić
   - https://vimeo.com/130867470 High Availability ElixirConf EU 2015
   - https://www.youtube.com/watch?v=Ba3aCm3A0o8, HA with Elixir and Erlang (FullStack Fest 2016)
+* Garrett Smith
+  - https://www.youtube.com/watch?v=BO-8Hx8kPtA Building a web app in Erlang
+
 
 ## Massive Data Exchange (Global Process Registries)
 * Massive interconnection of multiple devices and message passing between them
