@@ -31,6 +31,21 @@ fxml:get_subtag_with_xmlns(Packet, <<"query">>, <<"jabber:iq:roster">>).
 %% NOT FOUND -> false
 
 
+%% Getting content from Query
+Query = 
+    {xmlel,<<"query">>,
+       [{<<"xmlns">>,<<"jabber:iq:roster">>}],
+       [{xmlel,<<"item">>,
+               [{<<"jid">>,<<"ben@whatever.com">>},
+                {<<"name">>,<<"ben@whatever.com">>}],
+               []}
+       ]
+    }.
+QueryData = fxml:get_subtag(Query, <<"item">>),
+%% #xmlel.children = {xmlel, <<"item">>, [{<<"jid">>,<<"ben@whatever.com">>},{<<"name">>,<<"ben@whatever.com">>}],   []}
+fxml:get_tag_attr_s(<<"jid">>, QueryData).
+%% getting specific attribute value: <<"ben@whatever.com">>
+
 
 %% XML to tuple
 XML = fxml_stream:parse_element(<<"<note>
