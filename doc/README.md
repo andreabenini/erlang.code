@@ -41,7 +41,9 @@ Here are some docs for general usage and daily programming
   - https://github.com/processone/ejabberd/issues/1506
 
 
-## Profiling, General Tools, utilities
+## Profiling, Rebar, General Tools, utilities
+* Erlang Intro, Creating a simple library, Rebar basics
+  - https://howistart.org/posts/erlang/1/index.html
 * A set of functions for time profiling of Erlang programs to find out how the execution time is used
   - http://erlang.org/doc/man/eprof.html
 * Code snippets and practices that helped developers debug production systems that were built in Erlang
