@@ -20,3 +20,12 @@ io:fwrite("Error [L.~s == ~s]", [?ERROR_LINE, errorGetLine(?FUN_NAME)]),
 %% Returns an unique (and positive in this case) integer, nicely used to generate temp file names (kinda cool)
 erlang:unique_integer([positive]).
 %% 123
+
+
+%% Anonymous fun() with multiple clauses:
+F = fun(first) ->
+      io:format("This was the first clause");
+    (second) ->
+      io:format("This was the second clause")
+    end.
+%% You can now call F(first) and F(second).
