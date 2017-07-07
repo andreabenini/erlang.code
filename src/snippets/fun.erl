@@ -20,3 +20,5 @@ SearchTerms = fun(Params) ->
                       end,
                   InnerSearch(InnerSearch, Params, "")
               end,
+%% And here it goes:
+io:fwrite("URL=~p" [SearchTerms(QueryParameters)]).
