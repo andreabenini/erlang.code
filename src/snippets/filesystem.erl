@@ -5,3 +5,8 @@ makeRelativeSoftLink(FullFileNameSrc, FullFileNameDst) ->
                       filename:basename(binary_to_list(FullFileNameDst)) ),
     file:rename(filename:basename(binary_to_list(DefaultUserDst)),
                 binary_to_list(DefaultUserDst)).
+
+%% File name handling
+%% Extension
+filename:extension("/tmp/foo.erl").
+%% ".erl"
