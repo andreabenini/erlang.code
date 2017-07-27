@@ -138,3 +138,9 @@ settingDefault(TableName, Variable, DefaultValue) ->
 %% ... and its call:
 %% @see: table "setting" type is set (not bag)
 settingDefault(TableSetting, variable, "My Default Value").
+
+
+%% Getting mnesia running information as well as tables
+mnesia:info().
+%% Display record count inside a table
+mnesia:table_info('atomNameOfTheTable', size).
