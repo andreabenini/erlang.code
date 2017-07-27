@@ -142,5 +142,7 @@ settingDefault(TableSetting, variable, "My Default Value").
 
 %% Getting mnesia running information as well as tables
 mnesia:info().
+%% Display table information
+mnesia:table_info('atomNameOfTheTable', all).
 %% Display record count inside a table
 mnesia:table_info('atomNameOfTheTable', size).
