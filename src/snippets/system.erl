@@ -57,3 +57,14 @@ erlang:memory().
 %%                             24672
 %%                             127528
 %%                             24740
+
+inet:i().
+%% list of all ports opened and which processes own them, example:
+%%
+%% Port  Module   Recv     Sent    Owner        Local Address              Foreign Address         State     Type   
+%% 2169  inet_tcp 131422   216295  <0.13265.25> localhost:42139            localhost:57576         CONNECTED STREAM 
+%% 3310  inet_tcp 1914415  335858  <0.1998.14>  2.127.220.124:33948        2.118.109.157:postgres  CONNECTED STREAM 
+%% 4185  inet_tcp 123449   105472  <0.2791.27>  2.127.220.124:xmpp-client  107.123.122.137:53063   CONNECTED STREAM 
+%% 5134  inet_tcp 0        0       <0.1772.14>  localhost:websm            *:*                     ACCEPTING STREAM 
+%% 6718  inet_tcp 267      132     <0.1901.14>  2.127.220.124:43842        15.112.123.64:http      CONNECTED STREAM 
+%% ...
