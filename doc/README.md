@@ -40,6 +40,19 @@ Here are some docs for general usage and daily programming
 * httpc example with SSL connection
   - https://github.com/processone/ejabberd/issues/1506
 
+### mnesia
+* mnesia generic manual
+  - http://ftp.stu.edu.tw/FreeBSD/distfiles/erlang/mnesia-4.0.2.pdf
+* backup/restore single table from/to mnesia
+  - https://stackoverflow.com/questions/3709051/how-to-backup-restore-only-single-table-from-to-mnesia
+* rename the Node running a mnesia Database
+  - https://stackoverflow.com/questions/463400/how-to-rename-the-node-running-a-mnesia-database
+  - http://blog.ikura.co/posts/prod-to-dev-with-mnesia.html
+* proper way to backup/restore a mnesia database?
+  - https://stackoverflow.com/questions/10154414/what-is-the-proper-way-to-backup-restore-a-mnesia-database
+* mnesia database backup/restore with checkpoints
+  - http://www.programering.com/a/MzNyYTMwATE.html
+
 
 ## Profiling, Rebar, General Tools, utilities
 * Erlang Intro, Creating a simple library, Rebar basics
