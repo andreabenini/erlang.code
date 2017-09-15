@@ -146,3 +146,8 @@ mnesia:info().
 mnesia:table_info('atomNameOfTheTable', all).
 %% Display record count inside a table
 mnesia:table_info('atomNameOfTheTable', size).
+%% Display current checkpoints in a mnesia node
+mnesia:system_info(checkpoints).
+%% Show current backup system in use
+mnesia:system_info(backup_module)
+%-> mnesia_backup
