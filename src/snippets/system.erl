@@ -69,6 +69,8 @@ inet:i().
 %% 6718  inet_tcp 267      132     <0.1901.14>  2.127.220.124:43842        15.112.123.64:http      CONNECTED STREAM 
 %% ...
 
-
 flush().
 %% Flush incoming unread messages (console or module or whatever)
+
+l(http_uri).
+%% Load http_uri on console so autocomplete feature works for this new module too
