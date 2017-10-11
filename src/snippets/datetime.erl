@@ -15,9 +15,15 @@ unixTimestamp() ->
     {MegaSecs, Secs, _MicroSecs} = erlang:timestamp(),     %% Timestamp
     MegaSecs * 1000000 + Secs.
 
+%% Even simpler: unix timestamp (seconds)
+erlang:system_time(second).
+1501112223
+%% ... or milliseconds
+erlang:system_time(millisecond).
+1501112223444
+
 %% Print current datetime in an human friendly format
 printDateTime() ->
     {{YY,MM,DD}, {HH,II,SS}} = calendar:local_time(),
     io_lib:format("~4..0b/~2..0b/~2..0b ~2..0b:~2..0b:~2..0b", [YY, MM, DD, HH, II, SS]).
 %% io:fwrite("DateTime:~s", [printDateTime()]).            %% to call it
-
