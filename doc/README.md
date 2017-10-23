@@ -8,6 +8,13 @@ Here are some docs for general usage and daily programming
   - http://opensource.erlang-solutions.com/erlang-handbook/
   - http://learnyousomeerlang.com/ (LYSE: Learn You Some Erlang)
 
+
+## BEAM
+### The BEAM Book
+* This excellent book was made from one of the creators of the BEAM VM, definitively a must read !
+  - https://github.com/happi/theBeamBook
+
+
 ## OTP Docs
 
 ### supervisor
