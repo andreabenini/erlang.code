@@ -1,8 +1,21 @@
+%% coding: UTF-8
+%%
+-module(test).
 -define(HTTP_REQUEST_TIMEOUT, 30000).
 -define(PROFILE, myOwnProfile).
 
-request(Domain) ->
-    URL = "http://www.google.com",      %% URL must be a string, not a binary stream
+-export([                               %% gen_server behaviour
+    start/0,
+    request/1
+]).
+
+start() ->
+    io:format("[start]~n", []),              
+    inets:start(),
+    Result = inets:start(httpc, [{profile, ?PROFILE}]),
+    io:format("  ~p~n", [Result]).
+
+request(URL) ->
     %% HTTP Request
     case httpc:request(get, {URL, []}, [{timeout, ?HTTP_REQUEST_TIMEOUT}], [], ?PROFILE) of
         %% OK: Server replied with OK [HTTP: 200..29]
@@ -15,7 +28,7 @@ request(Domain) ->
             io:format("ERROR: [HTTP:~p] Headers ~p~n", [ReturnCode, Headers]),
             io:format("ERROR: Body       ~p~n", [BodyMessage]);
 
-        %% ERROR: Something else is wrong
+        %% ERROR: Generic error
         Error ->
             io:format("ERROR: requesting ~s, Error = ~p~n", [URL, Error])
     end.
