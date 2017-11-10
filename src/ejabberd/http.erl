@@ -14,7 +14,7 @@ request(Domain) ->
             ?ERROR_MSG("[HTTP:~p] Headers ~p", [ReturnCode, Headers]),
             ?ERROR_MSG("Body       ~p", [BodyMessage]);
 
-        %% ERRORE: Non mi ha risposto o c'è altro, lo scrivo sul log
+        %% ERRORE: Something else is wrong
         Error ->
-            ?ERROR_MSG("ERROR requesting ~s, Error = ~p", [URL, Errore])
+            ?ERROR_MSG("ERROR requesting ~s, Error = ~p", [URL, Error])
     end.
