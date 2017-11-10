@@ -7,15 +7,15 @@ request(Domain) ->
     case httpc:request(get, {URL, []}, [{timeout, ?HTTP_REQUEST_TIMEOUT}], [], ?PROFILE) of
         %% OK: Server replied with OK [HTTP: 200..29]
         {ok, {{_HTTPType, ReturnCode, _State}, Headers, BodyMessage}} when ReturnCode >= 200, ReturnCode =< 299 ->
-            io:format("HTTP Reply  ~p, Headers ~p", [ReturnCode, Headers]),
-            io:format("[HTTP:~p] ~p", [ReturnCode, BodyMessage]);
+            io:format("HTTP Reply  ~p, Headers ~p~n", [ReturnCode, Headers]),
+            io:format("[HTTP:~p] ~p~n", [ReturnCode, BodyMessage]);
 
         %% ERROR: Server replied with an error
         {ok, {{_HTTPType, ReturnCode, _State}, Headers, BodyMessage}} when ReturnCode < 200; ReturnCode > 299 ->
-            io:format("ERROR: [HTTP:~p] Headers ~p", [ReturnCode, Headers]),
-            io:format("ERROR: Body       ~p", [BodyMessage]);
+            io:format("ERROR: [HTTP:~p] Headers ~p~n", [ReturnCode, Headers]),
+            io:format("ERROR: Body       ~p~n", [BodyMessage]);
 
         %% ERROR: Something else is wrong
         Error ->
-            io:format("ERROR: requesting ~s, Error = ~p", [URL, Error])
+            io:format("ERROR: requesting ~s, Error = ~p~n", [URL, Error])
     end.
