@@ -37,7 +37,8 @@
     func1/0,                            %% func1() custom function
     func2/0,                            %% func2() custom function
     func2/1,                            %%
-    func3/0                             %% func3() custom function
+    func3/0,                            %% func3() custom function
+    func4/0
 ]).
 
 
@@ -92,7 +93,12 @@ handle_call(mycustomatom, From, State) ->
     {reply, ok, State};
 handle_call(DontKnow, From, State) ->
     io:fwrite("handle_call) handle_call=~p, From=~p, State=~p~n", [DontKnow, From, State]),
-    {reply, error, State}.
+    {reply, error, State};
+handle_call({call4, Parameters}, From, State) ->
+    io:fwrite("handle_call) [call4,~p] From=~p, State=~p~n", [Parameters, From, State]),
+    gen_server:cast(?MODULE, {asyncCall4, From, Parameters}),
+    {noreply, State}.
+
 
 %% HANDLE CAST - Asynchronous call
 %%      {noreply,NewState}
@@ -109,9 +115,14 @@ handle_cast(asyncCall2, State) ->
     io:fwrite("handle_cast) [asyncCall2], here goes State=~p~n", [State]),
     gen_server:cast(?MODULE, asyncCall1),
     {noreply, State};
+handle_cast({asyncCall4, From, Parameters}, State) ->
+    io:fwrite("handle_cast) [asyncCall4], From=~p, Params=~p, State=~p~n", [From, Parameters, State]),
+    gen_server:reply(From, myOwnReplyMessage),
+    {noreply, State};
 handle_cast(Message, State) ->
     io:fwrite("handle_cast) Message=~p, State=~p~n", [Message, State]),
     {noreply, State}.
+
 
 %% HANDLE INFO - Informative call
 %%      {noreply,NewState}
@@ -145,6 +156,14 @@ func2(Params) ->
 func3() ->
     io:fwrite("func3      ) [ASYNC] Executing func3/0~n", []),
     gen_server:cast(?MODULE, asyncCall2).
+
+%% @see: This is a sync function, it might take some time but it gets parallelized through
+%%       call+cast in sequence. gen_server returns back immediately and forks another process
+%%       (with the :cast) in parallel. func4/0 remains in sync but gen_server returns immediately
+%%       and it's available to do something else
+func4() ->
+    io:fwrite("func4      ) [SYNC] Executing func4 with parallel CAST/1~n", []),
+    gen_server:call(?MODULE, {call4, [here, are, some, params]}).
 
 
 %% @see module behaviour (internal functions)
