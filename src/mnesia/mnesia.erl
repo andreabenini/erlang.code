@@ -151,5 +151,8 @@ mnesia:table_info(Tab, checkpoints)
 %% Returns all active checkpoints on the current node
 mnesia:system_info(checkpoints).
 %% default backup module used by mnesia
-mnesia:system_info(backup_module)
+mnesia:system_info(backup_module).
 %-> mnesia_backup
+
+%% Return all available mnesia tables
+mnesia:system_info(tables).
