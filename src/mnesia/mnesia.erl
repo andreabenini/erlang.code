@@ -156,3 +156,6 @@ mnesia:system_info(backup_module).
 
 %% Return all available mnesia tables
 mnesia:system_info(tables).
+%% much more readable, one table per line
+[io:fwrite("~p~n", [Element]) || Element<-mnesia:system_info(tables)],ok.
+
