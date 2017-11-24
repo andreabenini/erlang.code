@@ -53,6 +53,7 @@ modulename:recordUpdate(myTableName, #tableRecord{
 %% @return ok (atom) Nothing returned
 %%
 %% @see   Selection criteria example : #record{field="something_to_del", _='_'}
+%% @see   more complex match_object condition #record{key = {Username,'_'}, _ = '_'}
 tableRecordDelete(TableName, Condition) ->
     F = fun() ->
         DeleteCriteria = mnesia:match_object(TableName, Condition, read),
@@ -62,8 +63,6 @@ tableRecordDelete(TableName, Condition) ->
                       DeleteCriteria)
     end,
     mnesia:transaction(F).
-
-
 %% here's the call:
 modulename:tableRecordDelete(tablename, #record{fieldname="conditionValueToDelete", _='_'}).
 
