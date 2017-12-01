@@ -9,3 +9,8 @@
 %% Some binaries
 > erlang:iolist_to_binary(AA).
 <<"Hello World, result is 42">>
+
+%% Trim string  (left | right | both)
+string:strip(SomeStringData, both).
+%% Trim binary string
+list_to_binary( string:strip(binary_to_list(SomeBinaryData), both) ).
