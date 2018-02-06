@@ -31,6 +31,10 @@ Here are some docs for general usage and daily programming
 * A clean and good sample for gen_server
   - http://20bits.com/article/erlang-a-generic-server-tutorial
 
+### general OTP
+* Design systems with asynchronous message passing between processes
+  - https://www.youtube.com/watch?v=6sBL1kHoMoo
+
 ## Other libraries
 
 ### lager
