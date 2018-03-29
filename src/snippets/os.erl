@@ -2,7 +2,7 @@
 
 %% OPTION1: Execute a shell command with os:cmd
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Rileva dove l'utility GraphicsMagick è installata (RICHIESTA PER L'UPDATE DELLE IMMAGINI UTENTE !)
+%% Detects where GraphicsMagick is (REQUIRED FOR IMAGES MANIPULATIONS)
 GraphicsMagickUtility = case os:cmd("which gm 2>/dev/null") of
                              [] -> throw(utilityGraphicsMagickNotFoundOnFileSystem);
                              UtilityPath -> re:replace(UtilityPath, "(^\\s+)|(\\s+$)", "", [global,{return,list}])   %% Strip CR/LF from string
