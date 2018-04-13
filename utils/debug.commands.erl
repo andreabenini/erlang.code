@@ -9,6 +9,12 @@ help().
 i().
 
 
+%% Pid'o'Rama
+list_to_pid("<0.760.0>").
+pid(0,760,0).
+%% <0.760.0>
+
+
 %% Killing in the name of... <0.760.0>
 exit(pid(0,760,0), kill).
 
