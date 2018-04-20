@@ -7,8 +7,10 @@
 "helloAtom World, result is 42\n"
 
 %% Some binaries
-> erlang:iolist_to_binary(AA).
-<<"Hello World, result is 42">>
+erlang:iolist_to_binary(AA).
+% <<"Hello World, result is 42">>
+<<"Hi there, ", (list_to_binary(AA))/binary>>,
+% <<"Hi there, Hello World, result is 42">>
 
 %% Trim string  (left | right | both)
 string:strip(SomeStringData, both).
