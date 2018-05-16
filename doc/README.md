@@ -7,6 +7,8 @@ Here are some docs for general usage and daily programming
 * Free Books and references
   - http://opensource.erlang-solutions.com/erlang-handbook/
   - http://learnyousomeerlang.com/ (LYSE: Learn You Some Erlang)
+* Articles
+  - http://www.theerlangelist.com/article/spawn_or_not To spawn, or not to spawn
 
 
 ## BEAM
