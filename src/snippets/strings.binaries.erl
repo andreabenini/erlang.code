@@ -16,3 +16,27 @@ erlang:iolist_to_binary(AA).
 string:strip(SomeStringData, both).
 %% Trim binary string
 list_to_binary( string:strip(binary_to_list(SomeBinaryData), both) ).
+
+%% Tokenize a binary string
+%% @see split(<<"id=Hello World">>, "=")  ->  [<<"id">>, <<"Hello World">>]
+split(Binary, Chars) ->
+    split(Binary, Chars, 0, 0, []).
+split(Bin, Chars, Idx, LastSplit, Acc) when is_integer(Idx), is_integer(LastSplit) ->
+    Len = (Idx - LastSplit),
+    case Bin of
+        <<_:LastSplit/binary,
+         This:Len/binary,
+         Char,
+         _/binary>> ->
+            case lists:member(Char, Chars) of
+                false ->
+                    split(Bin, Chars, Idx+1, LastSplit, Acc);
+                true ->
+                    split(Bin, Chars, Idx+1, Idx+1, [This | Acc])
+            end;
+        <<_:LastSplit/binary,
+         This:Len/binary>> ->
+            lists:reverse([This | Acc]);
+        _ ->
+            lists:reverse(Acc)
+    end.
