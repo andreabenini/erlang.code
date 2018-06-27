@@ -10,3 +10,24 @@ makeRelativeSoftLink(FullFileNameSrc, FullFileNameDst) ->
 %% Extension
 filename:extension("/tmp/foo.erl").
 %% ".erl"
+
+
+%% DELETE DIR - Recursive delete dir
+deleteDir(Directory) ->
+    case filelib:is_dir(Directory) of
+        true -> lists:foreach(fun(D) -> ok = file:del_dir(D) end, deleteDirAllFiles([Directory], []));
+        _    -> ok
+    end.
+deleteDirAllFiles([], EmptyDirs) ->
+    EmptyDirs;
+deleteDirAllFiles([Dir|T], EmptyDirs) ->
+    {ok, FilesInDir} = file:list_dir(Dir),
+    {Files, Dirs} = lists:foldl(fun(F, {Fs, Ds}) ->
+                                    Path = Dir ++ "/" ++ F,
+                                    case filelib:is_dir(Path) of
+                                        true  -> {Fs, [Path | Ds]};
+                                        false -> {[Path | Fs], Ds}
+                                    end
+                                end, {[],[]}, FilesInDir),
+    lists:foreach(fun(F) -> ok = file:delete(F) end, Files),
+    deleteDirAllFiles(T ++ Dirs, [Dir | EmptyDirs]).
