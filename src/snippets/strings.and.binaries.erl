@@ -40,3 +40,7 @@ split(Bin, Chars, Idx, LastSplit, Acc) when is_integer(Idx), is_integer(LastSpli
         _ ->
             lists:reverse(Acc)
     end.
+
+%% Get MD5 string from filename
+md5(FileNameString) ->
+    lists:flatten([io_lib:format("~2.16.0b",[N]) || <<N>> <= erlang:md5(FileNameString)]).
