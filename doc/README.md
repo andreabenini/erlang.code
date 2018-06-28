@@ -2,6 +2,8 @@
 Here are some docs for general usage and daily programming
 
 ## System & General documentation
+* Basics
+  - http://zxq9.com/erlang/
 * System Principles
   - http://erlang.org/doc/system_principles/system_principles.html
 * Free Books and references
