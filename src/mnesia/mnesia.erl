@@ -91,7 +91,7 @@ tableRecordSelect(TableName, Record, Criteria, ResultType) ->
     end,
     mnesia:transaction(F).
 %% ...and, here's the call:
-tableRecordSelect(grapha, #graph{parent='$1',aiml='$2',word='$3',_='_'}, [{'==','$1',100},{'/=','$2', 0}], ['$_').
+tableRecordSelect(grapha, #graph{parent='$1',aiml='$2',word='$3',_='_'}, [{'==','$1',100},{'/=','$2', 0}], ['$_']).
 
 
 %% SELECT all records from a table with an iterator
