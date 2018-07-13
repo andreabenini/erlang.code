@@ -94,6 +94,27 @@ tableRecordSelect(TableName, Record, Criteria, ResultType) ->
 tableRecordSelect(grapha, #graph{parent='$1',aiml='$2',word='$3',_='_'}, [{'==','$1',100},{'/=','$2', 0}], ['$_']).
 
 
+%% Slightly readable version of the above
+%% @param Filter (tuple) {Record, Criteria}
+%% @see   Record   = Type of record to look for
+%% @see   Criteria = Conditions (prefix polish notation)
+%% @see   Sample   : {Record,Criteria}
+%%                 . Record   = #tablefields{key = {'$1','_'}, _ = '_'},
+%%                 . Criteria = [{'==', User,'$1'}],
+tableRecordSelectFilter(TableName, Filter) ->
+    {Record, Criteria} = Filter,
+    FunFilter = fun() -> mnesia:select(TableName, [{Record, Criteria, ['$_']}]) end,
+    NumRecords = case mnesia:transaction(FunFilter) of
+        {atomic, Results} ->
+            [io:format("~p~n", [Item]) || Item <- Results],
+            length(Results);
+        Error ->
+            io:fwrite("ERROR: ~p~n", [Error]),
+            0
+    end,
+    io:fwrite("~nRecords:~p ~p~n", [NumRecords, TableName]).
+
+
 %% SELECT all records from a table with an iterator
 %% '[]' is where the accumulator might put its initial (and successive) value
 showTableWithIterator(TableName)->
