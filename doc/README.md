@@ -6,6 +6,8 @@ Here are some docs for general usage and daily programming
   - http://zxq9.com/erlang/
 * System Principles
   - http://erlang.org/doc/system_principles/system_principles.html
+* Erlang generic behaviors in a pythonic way (nice and brief explaination)
+  - http://codefather.org/erlang-generic-behaviors/
 * Free Books and references
   - http://opensource.erlang-solutions.com/erlang-handbook/
   - http://learnyousomeerlang.com/ (LYSE: Learn You Some Erlang)
