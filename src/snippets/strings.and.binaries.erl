@@ -41,6 +41,21 @@ split(Bin, Chars, Idx, LastSplit, Acc) when is_integer(Idx), is_integer(LastSpli
             lists:reverse(Acc)
     end.
 
+%% Tokenize a string
+FileType = case lists:keyfind("content-type", 1, Headers) of
+    {"content-type", ContentValue} ->
+         [ImageType|_] = string:tokens(ContentValue, ";"),
+         case ImageType of
+             "image/png"  -> "png";
+             "image/bmp"  -> "bmp";
+             "image/jpeg" -> "jpeg";
+             "image/gif"  -> "gif";
+             _            -> "png"
+         end;
+    _ -> error
+end.
+
+
 %% Get MD5 string from filename
 md5(FileNameString) ->
     lists:flatten([io_lib:format("~2.16.0b",[N]) || <<N>> <= erlang:md5(FileNameString)]).
