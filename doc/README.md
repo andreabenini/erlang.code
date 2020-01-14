@@ -21,6 +21,12 @@ Here are some docs for general usage and daily programming
   - https://github.com/happi/theBeamBook
 * 10 Ways to stop the virtual machine
   - https://medium.com/erlang-battleground/10-ways-to-stop-an-erlang-vm-7016bd593a5
+### Prometheus, influx, grafana and friends
+* Prometheus.io client for Erlang  
+  https://github.com/deadtrickster/prometheus.erl
+* Monitoring solution for Docker hosts and containers with Prometheus, Grafana, cAdvisor, NodeExporter
+  and alerting with AlertManager  
+  https://github.com/stefanprodan/dockprom
 
 
 ## OTP Docs
