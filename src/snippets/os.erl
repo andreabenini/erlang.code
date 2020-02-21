@@ -28,6 +28,32 @@ loop(Port, Data, Timeout) ->
     end.
 %% even Data++NewData=[NewData|Data]  but then   {Port, {exit_status, 0}} -> lists:reverse(Data);
 
+%% OPTION3: Execute a shell command and waits errorLevel
+%%    just a wrapper of open_port, an alternative to os:cmd/1
+%% Hint: Adding timeout could be a nice idea (Combine option2 and option3)
+cmdExec(Command) ->
+    Port = open_port({spawn, Command}, [stream, in, eof, hide, exit_status]),
+    cmdExec_data(Port, []).
+cmdExec_data(Port, Sofar) ->
+    receive
+        {Port, {data, Bytes}} ->
+            cmdExec_data(Port, [Sofar|Bytes]);
+        {Port, eof} ->
+            Port ! {self(), close},
+            receive
+                {Port, closed} -> true
+            end,
+            receive
+                {'EXIT',  Port,  _} -> ok
+                after 1 -> ok            % force context switch
+            end,
+            ExitCode = receive
+                {Port, {exit_status, Code}} -> Code
+            end,
+            {ExitCode, lists:flatten(Sofar)}
+    end.
+
+
 %% And here's some test Code
 test() ->
     shouldReturnCommandResult(),
